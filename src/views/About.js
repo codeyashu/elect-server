@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import SideNav from '../components/Nav/SideNav/SideNav';
 import Main from '../components/Main/Main';
 
-class App extends Component {
+class About extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="About">
         <SideNav />
         <Main />
       </div>
@@ -13,4 +13,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default About;
