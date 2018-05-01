@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import SideNav from '../components/Nav/SideNav/SideNav';
-import Main from '../components/Main/Main';
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
+import AboutDetails from '../components/Details/AboutDetails/AboutDetails';
 
 class About extends Component {
   render() {
     return (
       <div className="About">
         <SideNav />
-        <Main />
+        <AboutDetails />
         <BottomNav />
       </div>
     );

@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import './SideNav.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 class SideNav extends Component {
+
     render() {
-        const list = ["Vote", "Blog", "About", "Contact"];
+        let activestyle = {
+            fontWeight: 'bold',
+            color: '#E4B363'
+        };
 
         return (
-            <nav className="SideNav nav nav-pills flex-column">
+            <nav className="SideNav nav flex-column">
                 <Link to="/" className="navbar-brand"> goelect </Link>
-                <Link to={list[0].toLowerCase()} className="nav-item nav-link">{list[0]}</Link>
-                <Link to={list[1].toLowerCase()} className="nav-item nav-link">{list[1]}</Link>
-                <Link to={list[2].toLowerCase()} className="nav-item nav-link">{list[2]}</Link>
-                <Link to={list[3].toLowerCase()} className="nav-item nav-link">{list[3]}</Link>
+                <NavLink to="/vote" activeStyle={activestyle} className="nav-item nav-link"> Vote </NavLink>
+                <NavLink to="/about" activeStyle={activestyle} className="nav-item nav-link"> About </NavLink>
+                <NavLink to="/contact" activeStyle={activestyle} className="nav-item nav-link"> Contact </NavLink>
+                <NavLink to="/blog" activeStyle={activestyle} className="nav-item nav-link active"> Blog </NavLink>
             </nav>
         );
     };

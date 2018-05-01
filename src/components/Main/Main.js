@@ -5,7 +5,7 @@ class Main extends Component {
   render() {
     return (
       <div className="Main">
-        <h4> GoElect is under construction. Visit <a href="blog.goelect.com"> blog.goelect </a> for updates. </h4>
+        <h4> GoElect is under construction.<br />Visit our <a href="https://blog.goelect.org"> blog </a> for updates. </h4>
       </div>
     );
   }
