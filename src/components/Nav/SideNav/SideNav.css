@@ -3,8 +3,20 @@
     position: fixed;
     left: 0px;
     height: 100%;
+    padding: 20px;
+    background-color: #143642;
 }
 
-.nav-link {
+.navbar-brand {
+    color: #E0DFD5;
+    font-size: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.nav-item {
+    color: #0F8B8D;
+    padding-top: 20px;
+    font-size: 20px;
 
 }

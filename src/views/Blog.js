@@ -5,6 +5,7 @@ class Blog extends Component {
   render() {
     return (
       <div className="Blog">
+        <h1> Blog </h1>
         <SideNav />
       </div>
     );

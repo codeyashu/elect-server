@@ -7,13 +7,12 @@ class SideNav extends Component {
         const list = ["Vote", "Blog", "About", "Contact"];
 
         return (
-            <nav className="SideNav nav bg-dark flex-column">
-                <a className="navbar-brand" href="/"> GoElect </a>
-                {list.map(listItem => {
-                    return (
-                        <Link to={listItem.toLowerCase()} className="nav-link" key={list.indexOf(listItem)}>{listItem}</Link>
-                    );
-                })}
+            <nav className="SideNav nav nav-pills flex-column">
+                <Link to="/" className="navbar-brand"> goelect </Link>
+                <Link to={list[0].toLowerCase()} className="nav-item nav-link">{list[0]}</Link>
+                <Link to={list[1].toLowerCase()} className="nav-item nav-link">{list[1]}</Link>
+                <Link to={list[2].toLowerCase()} className="nav-item nav-link">{list[2]}</Link>
+                <Link to={list[3].toLowerCase()} className="nav-item nav-link">{list[3]}</Link>
             </nav>
         );
     };

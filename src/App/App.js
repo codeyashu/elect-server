@@ -11,7 +11,11 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' component={Home}/>
+        <Route exact path="/" render={(props) => {
+          const [subdomain] = window.location.hostname.split('.');
+          if (subdomain === 'blog') return <Blog />;
+          return <Home />;
+        }}/>
         <Route path='/about' component={About}/>
         <Route path='/contact' component={Contact}/>
         <Route path='/blog' component={Blog}/>
