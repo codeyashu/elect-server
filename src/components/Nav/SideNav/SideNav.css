@@ -1,9 +1,10 @@
 .SideNav {
+    border: solid red 1px;
     position: fixed;
+    left: 0px;
     height: 100%;
-    width: 20px;
 }
 
-.nav-item {
-    font-size: 20px;
+.nav-link {
+
 }

@@ -4,7 +4,7 @@ import SideNav from '../components/Nav/SideNav/SideNav';
 class Blog extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="Blog">
         <SideNav />
       </div>
     );

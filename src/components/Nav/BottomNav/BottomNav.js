@@ -4,8 +4,9 @@ import './BottomNav.css';
 class BottomNav extends Component {
     render() {
         return (
-            <div className="BottomNav">
-            </div>
+            <nav className="BottomNav nav justify-content-center fixed-bottom">
+                Copyright © Go Elect Inc. All rights reserved.
+            </nav>
         );
     };
 };

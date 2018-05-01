@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SideNav from '../components/Nav/SideNav/SideNav';
 import Main from '../components/Main/Main';
+import BottomNav from '../components/Nav/BottomNav/BottomNav';
 
 class About extends Component {
   render() {
@@ -8,6 +9,7 @@ class About extends Component {
       <div className="About">
         <SideNav />
         <Main />
+        <BottomNav />
       </div>
     );
   }

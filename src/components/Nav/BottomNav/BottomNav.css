@@ -1,4 +1,3 @@
 .BottomNav {
-    position: fixed;
-    height: 100%;
+    border: 1px red solid;
 }

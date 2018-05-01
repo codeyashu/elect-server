@@ -5,15 +5,17 @@ import Home from '../views/Home';
 import About from '../views/About';
 import Contact from '../views/Contact';
 import Blog from '../views/Blog';
+import Vote from '../views/Vote';
 
 class App extends Component {
   render() {
     return (
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path='/About' component={About}/>
-        <Route path='/Contact' component={Contact}/>
-        <Route path='/Blog' component={Blog}/>
+        <Route path='/about' component={About}/>
+        <Route path='/contact' component={Contact}/>
+        <Route path='/blog' component={Blog}/>
+        <Route path='/vote' component={Vote}/>
       </Switch>
     );
   }
