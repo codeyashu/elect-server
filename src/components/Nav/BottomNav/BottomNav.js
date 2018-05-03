@@ -8,7 +8,7 @@ class BottomNav extends Component {
                 Copyright © 2018 Go Elect Inc. All rights reserved.
             </nav>
         );
-    };
-};
+    }
+}
 
 export default BottomNav;

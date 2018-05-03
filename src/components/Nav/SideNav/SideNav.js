@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './SideNav.css';
 import { Link, NavLink } from 'react-router-dom';
 
+import * as routes from '../../../constants/routes';
+
 class SideNav extends Component {
 
     render() {
@@ -13,15 +15,15 @@ class SideNav extends Component {
         return (
             <nav className="SideNav nav flex-column">
                 <Link to="/" className="navbar-brand"> goelect </Link>
-                <NavLink to="/signin" activeStyle={activestyle} className="nav-item nav-link"> SignIn </NavLink>
-                <NavLink to="/vote" activeStyle={activestyle} className="nav-item nav-link"> Vote </NavLink>
-                <NavLink to="/about" activeStyle={activestyle} className="nav-item nav-link"> About </NavLink>
-                <NavLink to="/contact" activeStyle={activestyle} className="nav-item nav-link"> Contact </NavLink>
-                <NavLink to="/blog" activeStyle={activestyle} className="nav-item nav-link active"> Blog </NavLink>
+                <NavLink to={routes.SIGN_UP} activeStyle={activestyle} className="nav-item nav-link"> SignUp </NavLink>
+                <NavLink to={routes.VOTE} activeStyle={activestyle} className="nav-item nav-link"> Vote </NavLink>
+                <NavLink to={routes.ABOUT} activeStyle={activestyle} className="nav-item nav-link"> About </NavLink>
+                <NavLink to={routes.CONTACT} activeStyle={activestyle} className="nav-item nav-link"> Contact </NavLink>
+                <NavLink to={routes.BLOG} activeStyle={activestyle} className="nav-item nav-link active"> Blog </NavLink>
             </nav>
         );
-    };
-};
+    }
+}
 
 export default SideNav;
 

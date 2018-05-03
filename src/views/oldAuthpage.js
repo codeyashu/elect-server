@@ -18,3 +18,4 @@ class AuthPage extends Component {
 }
 
 export default AuthPage;
+ 
