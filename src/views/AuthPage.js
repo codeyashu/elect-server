@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import SideNav from '../components/Nav/SideNav/SideNav';
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
-import Main from '../components/Main/Main';
+import SignIn from '../components/Auth/SignIn/SignIn';
+import SignUp from '../components/Auth/SignUp/SignUp';
 
-class Vote extends Component {
+class AuthPage extends Component {
   render() {
     return (
-      <div className="Vote">
+      <div className="AuthPage">
         <SideNav />
-        <Main />
+        <SignIn />
+        <SignUp />
         <BottomNav />
       </div>
     );
   }
 }
 
-export default Vote;
+export default AuthPage;

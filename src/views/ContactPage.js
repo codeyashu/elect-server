@@ -3,10 +3,10 @@ import SideNav from '../components/Nav/SideNav/SideNav';
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 import ContactDetails from '../components/Details/ContactDetails/ContactDetails';
 
-class Contact extends Component {
+class ContactPage extends Component {
   render() {
     return (
-      <div className="Contact">
+      <div className="ContactPage">
         <SideNav />
         <ContactDetails />
         <BottomNav />
@@ -15,4 +15,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default ContactPage;

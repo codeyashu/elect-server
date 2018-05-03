@@ -3,10 +3,10 @@ import SideNav from '../components/Nav/SideNav/SideNav';
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 import CompactPost from '../components/Post/CompactPost/CompactPost';
 
-class Blog extends Component {
+class BlogPage extends Component {
   render() {
     return (
-      <div className="Blog">
+      <div className="BlogPage">
         <SideNav />
         <CompactPost />
         <BottomNav />
@@ -15,4 +15,4 @@ class Blog extends Component {
   }
 }
 
-export default Blog;
+export default BlogPage;

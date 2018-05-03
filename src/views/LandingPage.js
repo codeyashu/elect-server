@@ -3,10 +3,10 @@ import SideNav from '../components/Nav/SideNav/SideNav';
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 import Main from '../components/Main/Main';
 
-class Home extends Component {
+class LandingPage extends Component {
   render() {
     return (
-      <div className="Home">
+      <div className="LandingPage">
         <SideNav />
         <Main />
         <BottomNav />
@@ -15,4 +15,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default LandingPage;

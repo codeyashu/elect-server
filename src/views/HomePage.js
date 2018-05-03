@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import SideNav from '../components/Nav/SideNav/SideNav';
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
-import AboutDetails from '../components/Details/AboutDetails/AboutDetails';
+import Main from '../components/Main/Main';
 
-class About extends Component {
+class HomePage extends Component {
   render() {
     return (
-      <div className="About">
+      <div className="HomePage">
         <SideNav />
-        <AboutDetails />
+        <Main />
         <BottomNav />
       </div>
     );
   }
 }
 
-export default About;
+export default HomePage;
