@@ -19,3 +19,18 @@ export const doPasswordReset = (email) =>
 // Password Change
 export const doPasswordUpdate = (password) =>
     auth.currentUser.updatePassword(password);
+
+export const onAuthStateChanged = (user) =>
+    auth.onAuthStateChanged(user)
+
+export const user = auth.currentUser;
+
+//auth.onAuthStateChanged(); 
+
+/* auth.onAuthStateChanged(function(user) {
+  if (user) {
+    console.log('User is signed in.');
+  } else {
+    console.error('No user is signed in.');
+  }
+}); */

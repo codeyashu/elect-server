@@ -18,3 +18,8 @@
     margin-top: 20px;
     font-size: 20px;
 }
+
+.SignOut {
+    position: absolute;
+    bottom: 10px;
+}

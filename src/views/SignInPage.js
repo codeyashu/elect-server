@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import {
-  Link,
-  withRouter
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 
+import { SignUpLink } from './SignUpPage';
 import { auth } from '../firebase';
 
 import * as routes from '../constants/routes';
 
-class SignUpPage extends Component {
+class SignInPage extends Component {
   render() {
     return (
-      <div className="SignUpPage">
+      <div className="SignInPage">
         <BottomNav />
-        <h1>SignUp</h1>
-        <SignUpForm history={this.props.history} />
+        <h1>SignIn</h1>
+        <SignInForm history={this.props.history} />
+        <SignUpLink />
       </div>
     );
   }
 }
 
 const INITIAL_STATE = {
-  username: '',
   email: '',
   password: '',
   error: null,
@@ -32,7 +30,7 @@ const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
 
-class SignUpForm extends Component {
+class SignInForm extends Component {
   constructor(props) {
     super(props);
 
@@ -41,7 +39,6 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     const {
-      //    username,
       email,
       password,
     } = this.state;
@@ -50,8 +47,8 @@ class SignUpForm extends Component {
       history,
     } = this.props;
 
-    auth.doCreateUserWithEmailAndPassword(email, password)
-      .then(authUser => {
+    auth.doSignInWithEmailAndPassword(email, password)
+      .then(() => {
         this.setState(() => ({ ...INITIAL_STATE }));
         history.push(routes.HOME);
       })
@@ -64,29 +61,21 @@ class SignUpForm extends Component {
 
   render() {
     const {
-      username,
       email,
       password,
       error,
     } = this.state;
 
-    const isValid =
-      username === '' ||
+    const isInvalid =
       password === '' ||
       email === '';
 
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Election Id"
-        />
-        <input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="email"
+          type="text"
           autoComplete="email"
           placeholder="Email Address"
         />
@@ -97,30 +86,18 @@ class SignUpForm extends Component {
           autoComplete="current-password"
           placeholder="Password"
         />
-        <button disabled={isValid} type="submit">
-          Sign Up
+        <button disabled={isInvalid} type="submit">
+          Sign In
         </button>
+
         {error && <p>{error.message}</p>}
       </form>
     );
   }
 }
 
-class SignUpLink extends Component {
-  render() {
-    return (
-      <p>
-        Don't have an account?
-        {' '}
-        <Link to={routes.SIGN_UP}>Sign Up</Link>
-      </p>
-    );
-  }
-}
-
-export default withRouter(SignUpPage);
+export default withRouter(SignInPage);
 
 export {
-  SignUpForm,
-  SignUpLink
-}
+  SignInForm,
+};
