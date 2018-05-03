@@ -6,6 +6,7 @@ import About from '../views/About';
 import Contact from '../views/Contact';
 import Blog from '../views/Blog';
 import Vote from '../views/Vote';
+import Auth from '../views/Auth';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           if (subdomain === 'blog') return <Blog />;
           return <Home />;
         }}/>
+        <Route path='/signin' component={Auth}/>
         <Route path='/about' component={About}/>
         <Route path='/contact' component={Contact}/>
         <Route path='/blog' component={Blog}/>
