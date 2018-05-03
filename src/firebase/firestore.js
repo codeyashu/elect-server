@@ -1,6 +1,4 @@
-//Add data to firestore
-
-import { firebase, db } from './fire';
+import { db } from './firebase';
 
 export async function addConstituency(id, name, district, state) {
     try {

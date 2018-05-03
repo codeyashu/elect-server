@@ -9,7 +9,6 @@ import BlogPage from '../views/BlogPage';
 import VotePage from '../views/VotePage';
 import AuthPage from '../views/AuthPage';
 
-
 import * as routes from '../constants/routes';
 
 class App extends Component {
