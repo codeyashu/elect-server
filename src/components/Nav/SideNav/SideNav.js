@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './SideNav.css';
 import { Link, NavLink } from 'react-router-dom';
+import './SideNav.css';
 
+import AuthUserContext from '../../../App/AuthUserContext';
 import SignOut from '../../Auth/SignOut/SignOut';
 import * as routes from '../../../constants/routes';
 
@@ -13,13 +14,12 @@ const activestyle = {
 class SideNav extends Component {
   render() {
     return (
-      <div>
-        {
-          this.props.authUser
-            ? <NavAuth />
-            : <NavNonAuth />
+      <AuthUserContext.Consumer>
+        {authUser => authUser
+          ? <NavAuth />
+          : <NavNonAuth />
         }
-      </div>
+      </AuthUserContext.Consumer>
     );
   }
 }
@@ -32,7 +32,7 @@ const NavAuth = () =>
     <NavLink to={routes.ABOUT} activeStyle={activestyle} className="nav-item nav-link"> About </NavLink>
     <NavLink to={routes.CONTACT} activeStyle={activestyle} className="nav-item nav-link"> Contact </NavLink>
     <NavLink to={routes.BLOG} activeStyle={activestyle} className="nav-item nav-link active"> Blog </NavLink>
-    <SignOut className="SignOut"/>
+    <SignOut className="SignOut" />
   </nav>
 
 const NavNonAuth = () =>
