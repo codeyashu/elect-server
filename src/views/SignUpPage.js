@@ -3,10 +3,9 @@ import {
   Link,
   withRouter
 } from 'react-router-dom';
+
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
-
 import { auth } from '../firebase';
-
 import * as routes from '../constants/routes';
 
 class SignUpPage extends Component {
@@ -76,28 +75,40 @@ class SignUpForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Election Id"
-        />
-        <input
-          value={email}
-          onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="email"
-          autoComplete="email"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setState(byPropKey('password', event.target.value))}
-          type="password"
-          autoComplete="current-password"
-          placeholder="Password"
-        />
-        <button disabled={isValid} type="submit">
+      <form onSubmit={this.onSubmit} className="SignUpForm col-md-5">
+              <label>Voter ID</label>
+        <div className="form-group">
+          <input
+            value={username}
+            onChange={event => this.setState(byPropKey('username', event.target.value))}
+            type="text"
+            className="form-control"
+            placeholder="Voter Id"
+          />
+        </div>
+        <div className="form-group">
+        <label>Email ID</label>
+          <input
+            value={email}
+            onChange={event => this.setState(byPropKey('email', event.target.value))}
+            type="email"
+            className="form-control"
+            autoComplete="email"
+            placeholder="Email"
+          />
+        </div>
+        <div className="form-group">
+        <label>Password</label>
+          <input
+            value={password}
+            onChange={event => this.setState(byPropKey('password', event.target.value))}
+            type="password"
+            className="form-control"
+            autoComplete="current-password"
+            placeholder="Password"
+          />
+        </div>
+        <button disabled={isValid} type="submit" className="btn">
           Sign Up
         </button>
         {error && <p>{error.message}</p>}
