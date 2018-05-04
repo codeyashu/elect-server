@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 import Main from '../components/Main/Main';
+
+import withAuthorization from '../App/withAuthorization';
 
 class VotePage extends Component {
   render() {
@@ -13,4 +16,6 @@ class VotePage extends Component {
   }
 }
 
-export default VotePage;
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(VotePage);

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 import Main from '../components/Main/Main';
+
+import withAuthorization from '../App/withAuthorization';
 
 class HomePage extends Component {
   render() {
@@ -13,4 +16,7 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(HomePage);
