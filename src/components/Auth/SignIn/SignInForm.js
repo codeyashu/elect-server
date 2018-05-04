@@ -1,30 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import './SignIn.css';
 
-import BottomNav from '../components/Nav/BottomNav/BottomNav';
-import SignUpLink from '../components/Auth/SignUp/SignUpLink';
-import SignInForm from '../components/Auth/SignIn/SignInForm';
+import { auth } from '../../../firebase';
+import * as routes from '../../../constants/routes';
 
-class SignInPage extends Component {
-  render() {
-    return (
-      <div className="SignInPage">
-        <BottomNav />
-        <h1>SignIn</h1>
-        <SignInForm history={this.props.history} />
-        <SignUpLink />
-      </div>
-    );
-  }
-}
-
-export default withRouter(SignInPage);
-
-
-/* import { auth } from '../firebase';
-import * as routes from '../constants/routes'; */
-
-/* const INITIAL_STATE = {
+const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
@@ -107,8 +87,5 @@ class SignInForm extends Component {
     );
   }
 }
- */
 
-/* export {
-  SignInForm,
-}; */
+export default SignInForm;

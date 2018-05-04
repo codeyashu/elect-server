@@ -1,5 +1,19 @@
 import { db } from './firebase';
 
+export async function addUser(eid, username, email) {
+  try {
+    await db.collection('User').add({
+      election_id: eid,
+      username: username,
+      email: email
+    })
+    console.log('success addUser:');
+  }
+  catch (err) {
+    console.log('error addUser:', err);
+  }
+}
+
 export async function addConstituency(id, name, district, state) {
   try {
     await db.collection('constituency').add({

@@ -1,30 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import './SignUp.css';
 
-import BottomNav from '../components/Nav/BottomNav/BottomNav';
-import SignUpLink from '../components/Auth/SignUp/SignUpLink';
-import SignInForm from '../components/Auth/SignIn/SignInForm';
+import { auth, db } from '../../../firebase';
+import * as routes from '../../../constants/routes';
 
-class SignInPage extends Component {
-  render() {
-    return (
-      <div className="SignInPage">
-        <BottomNav />
-        <h1>SignIn</h1>
-        <SignInForm history={this.props.history} />
-        <SignUpLink />
-      </div>
-    );
-  }
-}
-
-export default withRouter(SignInPage);
-
-
-/* import { auth } from '../firebase';
-import * as routes from '../constants/routes'; */
-
-/* const INITIAL_STATE = {
+const INITIAL_STATE = {
+  username: '',
   email: '',
   password: '',
   error: null,
@@ -34,7 +15,7 @@ const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
 
-class SignInForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
 
@@ -43,6 +24,7 @@ class SignInForm extends Component {
 
   onSubmit = (event) => {
     const {
+      username,
       email,
       password,
     } = this.state;
@@ -51,10 +33,16 @@ class SignInForm extends Component {
       history,
     } = this.props;
 
-    auth.doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
+    auth.doCreateUserWithEmailAndPassword(email, password)
+      .then(authUser => {
+        db.addUser(authUser.uid, username, email)
+          .then(() => {
+            this.setState(() => ({ ...INITIAL_STATE }));
+            history.push(routes.HOME);
+          })
+          .catch(error => {
+            this.setState(byPropKey('error', error));
+          });
       })
       .catch(error => {
         this.setState(byPropKey('error:', error));
@@ -65,17 +53,29 @@ class SignInForm extends Component {
 
   render() {
     const {
+      username,
       email,
       password,
       error,
     } = this.state;
 
-    const isInvalid =
+    const isValid =
+      username === '' ||
       password === '' ||
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className="SignInForm col-md-5">
+      <form onSubmit={this.onSubmit} className="SignUpForm col-md-5">
+        <label>Voter ID</label>
+        <div className="form-group">
+          <input
+            value={username}
+            onChange={event => this.setState(byPropKey('username', event.target.value))}
+            type="text"
+            className="form-control"
+            placeholder="Voter Id"
+          />
+        </div>
         <div className="form-group">
           <label>Email ID</label>
           <input
@@ -88,7 +88,7 @@ class SignInForm extends Component {
           />
         </div>
         <div className="form-group">
-        <label>Password</label>
+          <label>Password</label>
           <input
             value={password}
             onChange={event => this.setState(byPropKey('password', event.target.value))}
@@ -98,17 +98,13 @@ class SignInForm extends Component {
             placeholder="Password"
           />
         </div>
-        <button disabled={isInvalid} type="submit" className="btn">
-          Sign In
+        <button disabled={isValid} type="submit" className="btn">
+          Sign Up
         </button>
-
         {error && <p>{error.message}</p>}
       </form>
     );
   }
 }
- */
 
-/* export {
-  SignInForm,
-}; */
+export default SignUpForm;

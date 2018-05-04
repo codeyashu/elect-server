@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import {
-  Link,
-  withRouter
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
-import { auth } from '../firebase';
-import * as routes from '../constants/routes';
+import SignUpForm from '../components/Auth/SignUp/SignUpForm';
 
 class SignUpPage extends Component {
   render() {
@@ -19,6 +15,13 @@ class SignUpPage extends Component {
     );
   }
 }
+
+
+export default withRouter(SignUpPage);
+
+
+/* import { auth, db } from '../firebase';
+import * as routes from '../constants/routes';
 
 const INITIAL_STATE = {
   username: '',
@@ -40,7 +43,7 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     const {
-      //    username,
+      username,
       email,
       password,
     } = this.state;
@@ -51,8 +54,14 @@ class SignUpForm extends Component {
 
     auth.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
+        db.addUser(authUser.uid, username, email)
+          .then(() => {
+            this.setState(() => ({ ...INITIAL_STATE }));
+            history.push(routes.HOME);
+          })
+          .catch(error => {
+            this.setState(byPropKey('error', error));
+          });
       })
       .catch(error => {
         this.setState(byPropKey('error:', error));
@@ -76,7 +85,7 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit} className="SignUpForm col-md-5">
-              <label>Voter ID</label>
+        <label>Voter ID</label>
         <div className="form-group">
           <input
             value={username}
@@ -87,7 +96,7 @@ class SignUpForm extends Component {
           />
         </div>
         <div className="form-group">
-        <label>Email ID</label>
+          <label>Email ID</label>
           <input
             value={email}
             onChange={event => this.setState(byPropKey('email', event.target.value))}
@@ -98,7 +107,7 @@ class SignUpForm extends Component {
           />
         </div>
         <div className="form-group">
-        <label>Password</label>
+          <label>Password</label>
           <input
             value={password}
             onChange={event => this.setState(byPropKey('password', event.target.value))}
@@ -117,21 +126,6 @@ class SignUpForm extends Component {
   }
 }
 
-class SignUpLink extends Component {
-  render() {
-    return (
-      <p>
-        Don't have an account?
-        {' '}
-        <Link to={routes.SIGN_UP}>Sign Up</Link>
-      </p>
-    );
-  }
-}
-
-export default withRouter(SignUpPage);
-
 export {
-  SignUpForm,
-  SignUpLink
-}
+  SignUpForm
+} */
