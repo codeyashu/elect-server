@@ -16,7 +16,6 @@ class SignUpPage extends Component {
   }
 }
 
-
 export default withRouter(SignUpPage);
 
 

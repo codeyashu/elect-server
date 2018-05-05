@@ -55,14 +55,14 @@ class SignInForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className="SignInForm col-md-5">
+      <form onSubmit={this.onSubmit} className="SignInForm col-md-4">
         <div className="form-group">
           <label>Email ID</label>
           <input
             value={email}
             onChange={event => this.setState(byPropKey('email', event.target.value))}
             type="email"
-            className="form-control"
+            className="form-control form-control-lg"
             autoComplete="email"
             placeholder="Email"
           />
@@ -73,7 +73,7 @@ class SignInForm extends Component {
             value={password}
             onChange={event => this.setState(byPropKey('password', event.target.value))}
             type="password"
-            className="form-control"
+            className="form-control form-control-lg"
             autoComplete="current-password"
             placeholder="Password"
           />

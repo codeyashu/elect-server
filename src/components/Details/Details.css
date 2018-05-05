@@ -1,0 +1,19 @@
+.AboutDetails {
+    position: absolute;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    height: 90%;
+}
+
+.ContactDetails {
+    position: absolute;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    height: 90%;
+}
+
+.card-title {
+    text-align: center;
+}
