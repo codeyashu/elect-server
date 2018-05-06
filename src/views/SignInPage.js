@@ -8,11 +8,10 @@ import SignInForm from '../components/Auth/SignIn/SignInForm';
 class SignInPage extends Component {
   render() {
     return (
-      <div className="SignInPage">
-        <BottomNav />
-        <h1>SignIn</h1>
+      <div className="SignInPage container">
         <SignInForm history={this.props.history} />
         <SignUpLink />
+        <BottomNav />
       </div>
     );
   }

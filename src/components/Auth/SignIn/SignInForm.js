@@ -52,10 +52,11 @@ class SignInForm extends Component {
 
     const isInvalid =
       password === '' ||
+      password.length < 6 ||
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className="SignInForm col-md-4">
+      <form onSubmit={this.onSubmit} className="SignInForm">
         <div className="form-group">
           <label>Email ID</label>
           <input

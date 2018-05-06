@@ -1,6 +1,9 @@
 .SignInForm {
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 50%;
     transform: translateX(-50%) translateY(-50%);
+    padding: 10px;
+    padding-bottom: 40px;
+    border: 2px solid #2A2D34;
 }

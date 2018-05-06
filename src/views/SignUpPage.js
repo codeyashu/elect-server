@@ -7,10 +7,9 @@ import SignUpForm from '../components/Auth/SignUp/SignUpForm';
 class SignUpPage extends Component {
   render() {
     return (
-      <div className="SignUpPage">
-        <BottomNav />
-        <h1>SignUp</h1>
+      <div className="SignUpPage container">
         <SignUpForm history={this.props.history} />
+        <BottomNav />
       </div>
     );
   }

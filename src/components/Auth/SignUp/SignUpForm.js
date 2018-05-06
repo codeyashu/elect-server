@@ -5,7 +5,7 @@ import { auth, db } from '../../../firebase';
 import * as routes from '../../../constants/routes';
 
 const INITIAL_STATE = {
-  username: '',
+  voterId: '',
   email: '',
   password: '',
   error: null,
@@ -24,7 +24,7 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     const {
-      username,
+      voterId,
       email,
       password,
     } = this.state;
@@ -35,7 +35,7 @@ class SignUpForm extends Component {
 
     auth.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        db.addUser(authUser.uid, username, email)
+        db.addUser(authUser.uid, voterId, email)
           .then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
             history.push(routes.HOME);
@@ -53,24 +53,26 @@ class SignUpForm extends Component {
 
   render() {
     const {
-      username,
+      voterId,
       email,
       password,
       error,
     } = this.state;
 
     const isValid =
-      username === '' ||
+      voterId === '' ||
+      voterId.length !== 5 ||
       password === '' ||
+      password.length < 6 ||
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className="SignUpForm col-md-4">
+      <form onSubmit={this.onSubmit} className="SignUpForm">
         <label>Voter ID</label>
         <div className="form-group">
           <input
-            value={username}
-            onChange={event => this.setState(byPropKey('username', event.target.value))}
+            value={voterId}
+            onChange={event => this.setState(byPropKey('voterId', event.target.value))}
             type="text"
             className="form-control form-control-lg"
             placeholder="Voter Id"

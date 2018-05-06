@@ -1,0 +1,17 @@
+.TopNav {
+    text-align: center;
+    background-color: #2A2D34;
+}
+
+.navbar-brand {
+    color: #F56960;
+}
+
+.nav-item {
+    color: #E0DFD5;
+    margin: 0px 10px;
+}
+
+.SignOut {
+    margin: 0px 10px;
+}

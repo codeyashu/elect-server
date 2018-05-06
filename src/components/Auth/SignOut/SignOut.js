@@ -7,7 +7,7 @@ class SignOut extends Component {
     return (
       <button
         type="button"
-        className="SignOut btn"
+        className="SignOut btn btn-outline-success"
         onClick={auth.doSignOut}
       >
         Sign Out

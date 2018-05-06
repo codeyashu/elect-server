@@ -5,7 +5,7 @@ import Main from '../components/Main/Main';
 class LandingPage extends Component {
   render() {
     return (
-      <div className="LandingPage">
+      <div className="LandingPage container-fluid">
         <Main />
         <BottomNav />
       </div>
