@@ -1,17 +1,9 @@
 .AboutDetails {
-    position: absolute;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-right: 100px;
-    height: 90%;
+    margin-top: 20px;
 }
 
 .ContactDetails {
-    position: absolute;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-right: 100px;
-    height: 90%;
+    margin-top: 20px;
 }
 
 .card-title {

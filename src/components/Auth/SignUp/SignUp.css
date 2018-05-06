@@ -1,7 +1,7 @@
 .SignUpForm {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translateX(-50%) translateY(-50%);
     padding: 10px;
     border: 2px solid #2A2D34;
@@ -10,6 +10,6 @@
 .SignUpLink {
     position: absolute;
     left: 50%;
-    top: 70%;
+    top: 60%;
     transform: translateX(-50%) translateY(-50%);
 }

@@ -1,0 +1,16 @@
+.LandingPage { 
+}
+
+.background {
+    width: 100%;
+    position: absolute;
+    height: 100%;   
+}
+
+.BottomNav {
+    color: white;
+}
+
+h3 {
+    text-align: center;
+}

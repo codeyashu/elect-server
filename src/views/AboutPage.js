@@ -5,7 +5,7 @@ import AboutDetails from '../components/Details/AboutDetails';
 class AboutPage extends Component {
   render() {
     return (
-      <div className="AboutPage">
+      <div className="AboutPage container">
         <AboutDetails />
         <BottomNav />
       </div>

@@ -1,7 +1,13 @@
 .Main {
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    text-align: center;
+    text-align:left;
+    color: white;
+}
+
+h1 {
+    -webkit-text-stroke: 2px black;
+    font-size: 80px;
 }

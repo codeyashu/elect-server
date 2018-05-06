@@ -31,7 +31,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <TopNav />
         <Route exact path={routes.LANDING} component={LandingPage} />
         <Route path={routes.HOME} component={HomePage} />

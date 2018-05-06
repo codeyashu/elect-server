@@ -5,7 +5,7 @@ import ContactDetails from '../components/Details/ContactDetails';
 class ContactPage extends Component {
   render() {
     return (
-      <div className="ContactPage">
+      <div className="ContactPage container">
         <ContactDetails />
         <BottomNav />
       </div>
