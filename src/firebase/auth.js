@@ -20,7 +20,28 @@ export const doPasswordReset = (email) =>
 export const doPasswordUpdate = (password) =>
   auth.currentUser.updatePassword(password);
 
-export const onAuthStateChanged = (user) =>
-  auth.onAuthStateChanged(user)
+/* export const onAuthStateChanged = (user) =>
+  auth.onAuthStateChanged(user) */
 
-export const user = auth.currentUser;
+// export const user = auth.currentUser;
+
+export async function Testing () {
+
+}
+
+/* export const user = () => {
+  auth.onAuthStateChanged((user) => user
+}
+ */
+/* export async function getUser() {
+  try {
+    await auth.onAuthStateChanged((user) => {
+      if(user) {
+        return user;
+      }
+    })
+  }
+  catch (err) {
+    console.log('auth user auth.js:', err);
+  }
+} */

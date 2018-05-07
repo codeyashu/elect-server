@@ -10,7 +10,7 @@ const prodConfig = {
   messagingSenderId: "521705883343"
 };
 
-var devConfig = {
+/* var devConfig = {
   apiKey: "AIzaSyDJLwrn_1BOAkVA-Cj_M8jVAPvzImtd6PM",
   authDomain: "go-elect-dev.firebaseapp.com",
   databaseURL: "https://go-elect-dev.firebaseio.com",
@@ -22,6 +22,9 @@ var devConfig = {
 const config = process.env.NODE_ENV === 'production'
   ? prodConfig
   : devConfig;
+ */
+
+var config = prodConfig;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
@@ -35,7 +38,11 @@ db.settings(settings);
 //Authentication
 const auth = firebase.auth();
 
+// Storage
+const storage = firebase.storage();
+
 export {
   db,
   auth,
+  storage
 };

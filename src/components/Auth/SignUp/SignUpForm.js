@@ -23,6 +23,7 @@ class SignUpForm extends Component {
   }
 
   onSubmit = (event) => {
+    event.preventDefault();
     const {
       voterId,
       email,
@@ -47,8 +48,6 @@ class SignUpForm extends Component {
       .catch(error => {
         this.setState(byPropKey('error:', error));
       });
-
-    event.preventDefault();
   }
 
   render() {
@@ -62,6 +61,8 @@ class SignUpForm extends Component {
     const isValid =
       voterId === '' ||
       voterId.length !== 5 ||
+      voterId[0] !== 'v'||
+      voterId[1] !== 'o' ||
       password === '' ||
       password.length < 6 ||
       email === '';
