@@ -14,3 +14,63 @@
 h3 {
     text-align: center;
 }
+
+
+ /* VotePage */
+
+ .wrapper {
+    display: flex;
+    margin: 20px;
+}
+
+.ConstituencyData {
+    border: gray 2px solid;
+    margin-right: 10px;
+}
+
+.CandidateData {
+    border: gray 2px solid;
+}
+
+.VoteForm {
+    border: 1px solid gray;
+    padding: 20px;
+    margin: 10px 0px;
+    margin-right: 10px;
+}
+
+.VoteStatus {
+    border: 1px solid gray;
+    padding: 20px;
+    margin: 10px 0px;
+    word-wrap: break-word;
+}
+
+.VoterList {
+    border: 1px solid gray;
+    padding: 20px;
+    word-wrap: break-word;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.GetVoteForm {
+    border: 1px solid gray;
+    margin-top: 20px;
+}
+
+.PartyLegend {
+    border: 1px solid gray;
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 20px;
+}
+
+li {
+    list-style: none;
+}
+
+.GetResult {
+    border: 1px solid gray;
+    margin-top: 20px;
+}

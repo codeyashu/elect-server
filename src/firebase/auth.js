@@ -20,14 +20,12 @@ export const doPasswordReset = (email) =>
 export const doPasswordUpdate = (password) =>
   auth.currentUser.updatePassword(password);
 
-/* export const onAuthStateChanged = (user) =>
-  auth.onAuthStateChanged(user) */
+// Auth Listener
+export const onAuthStateChanged = (user) =>
+  auth.onAuthStateChanged(user);
 
 // export const user = auth.currentUser;
 
-export async function Testing () {
-
-}
 
 /* export const user = () => {
   auth.onAuthStateChanged((user) => user

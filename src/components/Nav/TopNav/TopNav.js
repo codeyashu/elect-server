@@ -26,7 +26,7 @@ class TopNav extends Component {
 
 const NavAuth = () =>
     <nav className="TopNav navbar navbar-expand-lg justify-content-center">
-        <Link to="/" className="navbar-brand"> goelect </Link>
+        <Link to={routes.HOME} className="navbar-brand"> goelect </Link>
         <NavLink to={routes.VOTE} activeStyle={activestyle} className="nav-item nav-link"> Vote </NavLink>
         <NavLink to={routes.ABOUT} activeStyle={activestyle} className="nav-item nav-link"> About </NavLink>
         <NavLink to={routes.CONTACT} activeStyle={activestyle} className="nav-item nav-link"> Contact </NavLink>
