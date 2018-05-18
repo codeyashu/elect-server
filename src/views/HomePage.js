@@ -27,7 +27,7 @@ class HomePage extends Component {
   async componentDidMount() {
     let voters = await elect.methods.getVoters().call();
 
-    let votes = await elect.methods.getVotes(501, 3).call();
+    let votes = await elect.methods.getVotes(301).call();
 
     console.log('votes for congress in constituency c501:', votes);
     console.log('voters:', voters);

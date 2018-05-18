@@ -7,8 +7,8 @@ import './firebase';
 import App from './App/App';
 
 ReactDOM.render((
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  ), document.getElementById('root'))
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+), document.getElementById('root'))
 registerServiceWorker();
