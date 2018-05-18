@@ -1,8 +1,38 @@
+.SignInDiv {
+    margin-top: 160px;
+    padding: 16px 0;
+    border: 2px solid #071013;
+}
+
+.SignInHeading {
+    color: #BCF4F5;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
 .SignInForm {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translateX(-50%) translateY(-50%);
-    padding: 10px;
-    border: 2px solid #2A2D34;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 32px;
+}
+
+.SignInButton {
+    margin: auto;
+    width: 96px;
+    background-color: #BCF4F5;
+}
+
+.SignInLink {
+    margin-top: 8px;
+}
+
+.SignInLink .link {
+    color: #BCF4F5;
+    text-decoration: none;
+}
+
+.SignInLink .link:hover {
+    color: #FBFEF9;
 }

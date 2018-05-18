@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './Views.css';
-
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 import Main from '../components/Main/Main';
 

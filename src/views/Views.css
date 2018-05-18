@@ -1,24 +1,23 @@
-.LandingPage { 
+/* Sign In Page */
+.SignInPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.background {
-    width: 100%;
-    position: absolute;
-    height: 100%;   
-}
-
-.BottomNav {
-    color: white;
-}
-
-h3 {
-    text-align: center;
+/* Sign Up Page */
+.SignUpPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 
  /* VotePage */
 
- .wrapper {
+.wrapper {
     display: flex;
     margin: 20px;
 }

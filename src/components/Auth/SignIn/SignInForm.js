@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './SignIn.css';
-
 import { auth } from '../../../firebase';
 import * as routes from '../../../constants/routes';
 
@@ -56,35 +55,39 @@ class SignInForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit} className="SignInForm">
-        <div className="form-group">
-          <label>Email ID</label>
-          <input
-            value={email}
-            onChange={event => this.setState(byPropKey('email', event.target.value))}
-            type="email"
-            className="form-control form-control-lg"
-            autoComplete="email"
-            placeholder="Email"
-          />
-        </div>
-        <div className="form-group">
-        <label>Password</label>
-          <input
-            value={password}
-            onChange={event => this.setState(byPropKey('password', event.target.value))}
-            type="password"
-            className="form-control form-control-lg"
-            autoComplete="current-password"
-            placeholder="Password"
-          />
-        </div>
-        <button disabled={isInvalid} type="submit" className="btn">
-          Sign In
-        </button>
+      <div className="SignInDiv col-md-4">
+        <h3 className="SignInHeading">Sign In to your Account</h3>
 
-        {error && <p>{error.message}</p>}
-      </form>
+        <form onSubmit={this.onSubmit} className="SignInForm">
+          <div className="form-group">
+            <label>Email ID</label>
+            <input
+              value={email}
+              onChange={event => this.setState(byPropKey('email', event.target.value))}
+              type="email"
+              className="form-control"
+              autoComplete="email"
+              placeholder="Email"
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              value={password}
+              onChange={event => this.setState(byPropKey('password', event.target.value))}
+              type="password"
+              className="form-control"
+              autoComplete="current-password"
+              placeholder="Password"
+            />
+          </div>
+          <button disabled={isInvalid} type="submit" className="btn SignInButton">
+            Sign In
+          </button>
+          {error && <p>{error.message}</p>}
+        </form>
+
+      </div>
     );
   }
 }
