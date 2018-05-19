@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import withAuthorization from '../App/withAuthorization';
+import elect from '../contract/elect';
+import web3 from '../contract/web3';
+import './styles/HomePage.css';
 
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
+import PartyTable from '../components/Table/PartyTable';
+import ConstituencyTable from '../components/Table/ConstituencyTable';
 
-import withAuthorization from '../App/withAuthorization';
-
-import elect from '../contract/elect';
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -16,35 +19,77 @@ class HomePage extends Component {
 
     this.state = {
       voters: [],
-      votes: '',
       verify: '',
-      result: '',
       address: '',
-      cid: ''
+      cid: '',
+      status: '',
+      votes: {
+        p1: '',
+        p2: '',
+        p3: '',
+      },
+      result: {
+        p1: '',
+        p2: '',
+        p3: '',
+      },
     }
   }
 
   async componentDidMount() {
-    let voters = await elect.methods.getVoters().call();
-
-    let votes = await elect.methods.getVotes(301).call();
-
-    console.log('votes for congress in constituency c501:', votes);
-    console.log('voters:', voters);
-    this.setState({ voters });
+    try {
+      let voters = await elect.methods.getVoters().call();
+      this.setState({ voters });
+    } catch (err) {
+      console.log("error getting voter list:", err);
+    }
   }
 
   onSubmit1 = async (event) => {
     event.preventDefault();
-
     let verify = await elect.methods.verifyVote(this.state.address).call();
-    this.setState({ verify });
+    this.setState({ verify: "Party ID: " + verify });
   }
+
   onSubmit2 = async (event) => {
     event.preventDefault();
+    let votes = await elect.methods.getVotes(this.state.cid).call();
+    this.setState(state => {
+      state.votes.p1 = "BJP: " + votes.p1;
+      state.votes.p2 = "INC: " + votes.p2;
+      state.votes.p3 = "JDS: " + votes.p3;
+      return state;
+    });
+  }
 
-    let result = await elect.methods.getResult(Number(this.state.cid.substr(1))).call();
-    this.setState({ result });
+  getResults = async (event) => {
+    event.preventDefault();
+    let result = await elect.methods.getResults().call();
+    this.setState(state => {
+      state.result.p1 = "BJP: " + result.p1 + " Seats";
+      state.result.p2 = "INC: " + result.p2 + " Seats";
+      state.result.p3 = "JDS: " + result.p3 + " Seats";
+      return state;
+    });
+  }
+
+  findResults = async (event) => {
+    event.preventDefault();
+    try {
+      const accounts = await web3.eth.getAccounts();
+      try {
+        let status = await elect.methods.findResults().send({
+          from: accounts[0]
+        });
+        this.setState({ status: JSON.stringify(status) });
+      } catch (err) {
+        console.log("Error Finding Results", err);
+      }
+    } catch (err) {
+      console.log("Error getting accounts from web3:", err);
+    }
+
+
   }
 
   render() {
@@ -55,49 +100,29 @@ class HomePage extends Component {
 
     return (
       <div className="HomePage container">
-        <div className="wrapper">
-          <div className="VoterList col-md-5">
-            <h3> Voter List </h3>
+
+        <div className="HomeWrapper">
+          <div className="VoterList List col-md-5">
+            <h3 className="VoterListHeader Header">Voter List</h3>
             {
               this.state.voters.map(element =>
                 <li key={element}>{element}</li>
               )}
           </div>
-
-          <form onSubmit={this.onSubmit1} className="GetVoteForm col-md-4">
-            <h3> Verify Vote </h3>
-            <div className="form-group">
-              <label>Address
-              <input
-                  value={address}
-                  onChange={event => this.setState(byPropKey('address', event.target.value))}
-                  type="text"
-                  className="form-control"
-                  placeholder="Address"
-                />
-              </label>
-            </div>
-            <button type="submit" className="btn">
-              Submit
-          </button>
-            <span> <h2> Party ID: {this.state.verify} </h2> </span>
-          </form>
+          <div className="PartyList List col-md-3">
+            <h3 className="PartyListHeader Header">Party List</h3>
+            <PartyTable />              
+          </div>
+          <div className="ConstituencyList List col-md-3">
+            <h3 className="ConstituencyListHeader Header">Constituency List</h3>
+            <ConstituencyTable />
+          </div>
         </div>
 
-        <div className="wrapper">
-          <div className="PartyLegend">
-            <li> Id: 1 | BJP </li>
-            <li> Id: 2 | Congress </li>
-            <li> Id: 3 | JDS </li>
-          </div>
-          <div className="PartyLegend">
-            <li> CId: C501 | Jayanagar </li>
-            <li> CId: C502 | Basvangudi </li>
-            <li> CId: C503 | J P Nagar </li>
-          </div>
+        <div className="HomeWrapper">
 
-          <form onSubmit={this.onSubmit2} className="GetResult col-md-4">
-            <h3> Get Result </h3>
+          <form onSubmit={this.onSubmit2} className="GetVotesForm HomeForm col-md-4">
+            <h3 className="GetVotesHeader Header">Get Votes</h3>
             <div className="form-group">
               <label>Constituency ID
               <input
@@ -109,13 +134,53 @@ class HomePage extends Component {
                 />
               </label>
             </div>
-            <button type="submit" className="btn">
+            <button type="submit" className="btn Button">
               Submit
           </button>
-            <span> <h2> Leading: {this.state.result} </h2> </span>
+            <div className="GetVoteResult">
+              <h3 className="Result">{this.state.votes.p1}</h3>
+              <h3 className="Result">{this.state.votes.p2}</h3>
+              <h3 className="Result">{this.state.votes.p3}</h3>
+            </div>
+          </form>
+              
+          <div className="GetResults col-md-4">
+            <h3 className="GetResultsHeader Header" onClick={this.getResults}>Get Results</h3>
+            <div className="GetVoteResult">
+              <h3 className="Result">{this.state.result.p1}</h3>
+              <h3 className="Result">{this.state.result.p2}</h3>
+              <h3 className="Result">{this.state.result.p3}</h3>
+            </div>
+          </div>
+
+          <form onSubmit={this.onSubmit1} className="VerifyVoteForm HomeForm col-md-4">
+            <h3 className="VerifyVoteHeader Header">Verify Vote</h3>
+            <div className="form-group">
+              <label>Address
+              <input
+                  value={address}
+                  onChange={event => this.setState(byPropKey('address', event.target.value))}
+                  type="text"
+                  className="form-control"
+                  placeholder="Address"
+                />
+              </label>
+            </div>
+            <button type="submit" className="btn Button">
+              Submit
+          </button>
+            <h3 className="VerifyVoteResult Result">{this.state.verify}</h3>
           </form>
 
         </div>
+
+        <div className="HomeWrapper">
+          <div className="FindResults col-md-10">
+            <h3 className="FindResultsHeader Header" onClick={this.findResults}>Find Results</h3>
+            <h6 className="FindResultsStatus">{this.state.status}</h6>
+          </div>
+        </div>
+        
         <BottomNav />
       </div >
     );

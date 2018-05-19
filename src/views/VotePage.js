@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-
-import BottomNav from '../components/Nav/BottomNav/BottomNav';
-
 import withAuthorization from '../App/withAuthorization';
 import { auth, db } from '../firebase';
+import './styles/VotePage.css';
 
 import web3 from '../contract/web3';
 import elect from '../contract/elect';
+
+import BottomNav from '../components/Nav/BottomNav/BottomNav';
+import CandidateDetails from '../components/Vote/CandidateDetails';
+import ConstituencyDetails from '../components/Vote/ConstituencyDetails';
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -18,10 +20,12 @@ class VotePage extends Component {
 
     this.state = {
       vid: '',
-      cname: '',
-      cid: '',
-      cdistrict: '',
-      cstate: '',
+      constituency: {
+        id: '',
+        name: '',
+        district: '',
+        state: '',
+      },
       candidate: [],
       selectedOption: 1,
       status: ''
@@ -32,7 +36,7 @@ class VotePage extends Component {
     let uid;
     await auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log("success!!")
+        console.log("success getting uid")
         uid = user.uid;
       } else {
         console.log("failure getting uid");
@@ -41,56 +45,53 @@ class VotePage extends Component {
     let vid = await db.getvid(uid);
     let cinfo = await db.getConstituency(vid);
     let candidate = await db.getCandidates(cinfo.cid);
-    console.log(candidate);
     this.setState({
       vid: vid,
-      cname: cinfo.name,
-      cid: cinfo.cid,
-      cdistrict: cinfo.district,
-      cstate: cinfo.state,
-      candidate: candidate
+      candidate: candidate,
+      constituency: {
+        id: cinfo.cid,
+        name: cinfo.name,
+        district: cinfo.district,
+        state: cinfo.state,
+      }
     })
   }
 
   onSubmit = async (event) => {
     event.preventDefault();
+    this.setState({ status: 'Waiting for Vote to be mined.' })
     console.log("pid:", this.state.selectedOption);
-    console.log("cid:", Number(this.state.cid.substr(1)));
+    console.log("cid:", this.state.constituency.id);
     console.log("vid:", this.state.vid);
     const accounts = await web3.eth.getAccounts();
-    const status = await elect.methods.castVote(Number(this.state.cid.substr(1)), this.state.selectedOption, this.state.vid).send({
-      from: accounts[0]
-    })
-    console.log(status);
-    this.setState({ status: JSON.stringify(status) });
+    try {
+      const status = await elect.methods.castVote(this.state.constituency.id, this.state.selectedOption, this.state.vid).send({
+        from: accounts[0]
+      })
+      console.log(status);
+      this.setState({ status: JSON.stringify(status) });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
     return (
       <div className="VotePage container">
 
+        <div className="VoterIdDiv">
+          <h3 className="VoterIdLabel">Voter ID: {this.state.vid}</h3>
+        </div>
         <div className="wrapper">
-
-          <div className="ConstituencyData card col-md-4 offset-md-1">
-            <span> <h3> Voter ID: <b> {this.state.vid} </b> </h3> </span>
-            <span> <h3> <b> Constituency Details </b> </h3> </span>
-            <span> <h3> Name: {this.state.cname} </h3> </span>
-            <span> <h3> District: {this.state.cdistrict} </h3> </span>
-            <span> <h3> State: {this.state.cstate} </h3> </span>
-          </div>
-          <div className="CandidateData card col-md-4">
-            <span> <h3>  <b> Candidate Details </b> </h3> </span>
-            {this.state.candidate.map(cand => {
-              return (
-                <span key={cand.pid}>
-                  <h3> {cand.name} | {cand.party}</h3>
-                </span>
-              )
-            })}
-          </div>
+          <ConstituencyDetails constituency={this.state.constituency} />
+          <CandidateDetails candidate={this.state.candidate} />
         </div>
 
         <div className="wrapper">
+
+          <div className="VoteFormDiv  col-md-4">
+
+            <h3 className="VoteFormHeader">Vote Responsibly</h3>
             <form onSubmit={this.onSubmit} className="VoteForm">
               {this.state.candidate.map(cand => {
                 return (
@@ -109,16 +110,18 @@ class VotePage extends Component {
                   </div>
                 )
               })}
-              <button type="submit" className="btn">
+              <button type="submit" className="btn VoteFormButton">
                 Vote
               </button>
             </form>
-          <div className="VoteStatus col">
-            <h3> Status </h3>
-            <h6> {this.state.status} </h6>
           </div>
-          
+          <div className="VoteStatus col-md-8">
+            <h3 className="VoteStatusHeading">Status</h3>
+            <h6>{this.state.status}</h6>
+          </div>
+
         </div>
+
         <BottomNav />
       </div>
     )
@@ -128,14 +131,3 @@ class VotePage extends Component {
 const authCondition = (authUser) => !!authUser;
 
 export default withAuthorization(authCondition)(VotePage);
-
-            /* <form onSubmit={this.onSubmit} className="VoteForm">
-            {this.state.candidate.map(cand => {
-              return (
-                <label key={cand.toString()}>
-                  <input form-check-input type="radio" value={cand.pid} checked={this.setState({selectedOption: cand.pid})}/>
-                    <h3>{cand.name} --- {cand.party}</h3>
-                </label>
-              )
-            })}
-            </form> */

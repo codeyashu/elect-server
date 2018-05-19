@@ -1,0 +1,68 @@
+.VotePage {
+    display: flex;
+    flex-direction: column;
+}
+
+.VoterIdDiv {
+    padding: 8px;
+    border: 2px solid #071013;
+    margin: 4px 35%;
+    display: flex;
+    justify-content: center;
+}
+
+.VoterIdLabel {
+    color: #BCF4F5;
+    font-weight: bold;
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.VoteFormDiv {
+    border: 2px solid #071013;
+    padding: 16px;
+    margin: 4px 0px;
+    margin-right: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.VoteFormHeader {
+    color: #BCF4F5;
+    font-weight: bold;
+}
+
+.VoteForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.VoteStatus {
+    border: 2px solid #071013;
+    padding: 8px;
+    margin: 4px 0px;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.VoteStatusHeading {
+    color: #BCF4F5;
+    font-weight: bold;
+}
+
+.VoteFormButton {
+    background-color: #BCF4F5;
+    padding: 8px 32px;
+    margin: auto;
+}
+
+.VoteFormButton:hover {
+    color: #1C5D99
+}

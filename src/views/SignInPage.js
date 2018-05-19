@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import './Views.css';
+import './styles/AuthPage.css';
 
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
 import SignInForm from '../components/Auth/SignIn/SignInForm';

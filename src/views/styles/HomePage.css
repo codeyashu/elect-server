@@ -1,0 +1,97 @@
+.HomePage {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+}
+
+li {
+    list-style: none;
+} 
+
+/* Common Styles */
+
+.HomeWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.List {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #071013;
+    padding: 16px;
+    overflow-wrap: break-word;
+    margin: 8px 8px;
+}
+
+.Header {
+    color: #BCF4F5;
+    font-weight: bold;
+}
+
+.Result {
+    color: #BCF4F5;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.HomeForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #071013;
+    padding: 16px;
+    margin: 8px 8px;
+}
+
+.Button {
+    background-color: #BCF4F5;
+    padding: 6px 12px;
+}
+
+.Button:hover {
+    color: #1C5D99
+}
+
+/* Specific Styles */
+
+.VerifyVoteHeader {
+    color: #BCF4F5;
+    font-weight: bold;
+}
+
+.GetResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #071013;
+    padding: 16px;
+    overflow-wrap: break-word;
+    margin: 8px 8px;
+}
+
+.GetResultsHeader {
+    cursor: pointer;
+}
+
+.GetResultsHeader:hover {
+    color: #ECC8AE;
+}
+
+.FindResults {
+    border: 2px solid #071013;
+    margin: 8px 8px;
+    padding: 16px;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.FindResultsHeader {
+    cursor: pointer;
+}
+
+.FindResultsHeader:hover {
+    color: #ECC8AE;
+}
