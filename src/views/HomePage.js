@@ -5,7 +5,7 @@ import web3 from '../contract/web3';
 import './styles/HomePage.css';
 
 import BottomNav from '../components/Nav/BottomNav/BottomNav';
-import PartyTable from '../components/Table/PartyTable';
+import PartyList from '../components/Table/PartyTable';
 import ConstituencyTable from '../components/Table/ConstituencyTable';
 
 
@@ -55,9 +55,9 @@ class HomePage extends Component {
     event.preventDefault();
     let votes = await elect.methods.getVotes(this.state.cid).call();
     this.setState(state => {
-      state.votes.p1 = "BJP: " + votes.p1;
-      state.votes.p2 = "INC: " + votes.p2;
-      state.votes.p3 = "JDS: " + votes.p3;
+      state.votes.p1 = "Party 1: " + votes.p1;
+      state.votes.p2 = "Party 2: " + votes.p2;
+      state.votes.p3 = "Party 3: " + votes.p3;
       return state;
     });
   }
@@ -66,9 +66,9 @@ class HomePage extends Component {
     event.preventDefault();
     let result = await elect.methods.getResults().call();
     this.setState(state => {
-      state.result.p1 = "BJP: " + result.p1 + " Seats";
-      state.result.p2 = "INC: " + result.p2 + " Seats";
-      state.result.p3 = "JDS: " + result.p3 + " Seats";
+      state.result.p1 = "Party 1: " + result.p1 + " Seats";
+      state.result.p2 = "Party 2: " + result.p2 + " Seats";
+      state.result.p3 = "Party 3: " + result.p3 + " Seats";
       return state;
     });
   }
@@ -111,7 +111,7 @@ class HomePage extends Component {
           </div>
           <div className="PartyList List col-md-3">
             <h3 className="PartyListHeader Header">Party List</h3>
-            <PartyTable />              
+            <PartyList />              
           </div>
           <div className="ConstituencyList List col-md-3">
             <h3 className="ConstituencyListHeader Header">Constituency List</h3>

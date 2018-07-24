@@ -1,7 +1,19 @@
 import React from 'react';
 import './Table.css';
 
-function PartyTable() {
+function PartyList() {
+  return (
+    <ul className="PartyList">
+      <li>Party 1</li>
+      <li>Party 2</li>
+      <li>Party 3</li>
+    </ul>
+  );
+}
+
+export default PartyList;
+
+/* function PartyTable() {
     return (
         <table className="PartyTable">
               <tr>
@@ -24,6 +36,4 @@ function PartyTable() {
               </tbody>
             </table>
     );
-}
-
-export default PartyTable;
+} */
